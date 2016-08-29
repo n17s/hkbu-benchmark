@@ -1,12 +1,12 @@
 WorkDir=.
 ModelDir=$WorkDir$/Output/$ConfigName$
-DataDir=/home/dl/data/cntk
+DataDir=".."
 precision=float
 
-deviceId=1
-minibatchSize=1024
+deviceId="auto"
+minibatchSize=64
 epochSize=4096
-maxEpochs=2
+maxEpochs=3
 
 makeMode=false
 
@@ -64,6 +64,7 @@ Train=[
 reader=[
     readerType=UCIFastReader
     file=$DataDir$/data26752_4k.txt
+    randomize="none"
     features=[
         dim=$featureDim$
         start=1
