@@ -1,12 +1,13 @@
 
 all: cntk torch tf
+CNTK=~/CNTK/bin/cntk
 
 #128 sequences * 32 = 4096
 #128 sequences * 64 = 8192 
 cntk:
 	cd CNTK/lstm && \
-	cntk configFile=rnn.cntk configName=lstm deviceId=1 minibatchSize=4096 epochSize=81920 maxEpochs=3 makeMode=false && \
-	cntk configFile=rnn.cntk configName=lstm deviceId=1 minibatchSize=8192 epochSize=81920 maxEpochs=3 makeMode=false && \
+	${CNTK} configFile=rnn.cntk configName=lstm deviceId=1 minibatch=4096 epochSize=81920   maxEpochs=3 makeMode=false trainFile="ptb.train.32.ctf" && \
+	${CNTK} configFile=rnn.cntk configName=lstm deviceId=1 minibatch=8192 epochSize=163840  maxEpochs=3 makeMode=false trainFile="ptb.train.64.ctf" && \
 	cd ../..
 
 tf:
