@@ -91,7 +91,7 @@ train = [
         gradientClippingWithTruncation = true
         clippingThresholdPerSample = 15.0
         maxEpochs = $maxEpochs$ 
-        numMBsToShowResult = 100
+        numMBsToShowResult = 1
         gradUpdateType = "none"
         loadBestModel = true
 

@@ -20,8 +20,8 @@ cntk: CNTK/labelmap26752.txt CNTK/data26752_4k.txt
 tf:
 	cd TF/fcn5 && \
 	LD_LIBRARY_PATH=/usr/local/cuda-7.5/lib64:/usr/local/cuda-7.5/extras/CUPTI/lib64 python \
-		fcn5.py -e 2 -b 64 -i 4 -d 0 && \
+		fcn5.py -e 2 -b 64 -i 4 -d 1 && \
 	cd ../fcn8 && \
 	LD_LIBRARY_PATH=/usr/local/cuda-7.5/lib64:/usr/local/cuda-7.5/extras/CUPTI/lib64 python \
-		fcn8.py -e 2 -b 64 -i 4 -d 0 && \
+		fcn8.py -e 2 -b 64 -i 4 -d 1 && \
 	cd ../..

@@ -1,6 +1,6 @@
 WorkDir=.
 ModelDir=$WorkDir$/Output/$ConfigName$
-DataDir=/home/dl/data/cntk
+DataDir=".."
 
 ndlMacros=$WorkDir$/Macros.ndl
 
@@ -36,11 +36,12 @@ Train=[
         learningRatesPerMB=0.01
         momentumPerMB=0
         dropoutRate=0
+	numMBsToShowResult=1
     ]
 
     reader=[
         readerType=UCIFastReader
-        file=$DataDir$/imagenet_data0.5K.txt
+        file=$DataDir$/imagenet_data.txt
         randomize=None
         features=[
             dim=150528
@@ -50,7 +51,7 @@ Train=[
             dim=1
             start=0
             labelDim=1000
-            labelMappingFile=$DataDir$/labelmap.1K.txt
+            labelMappingFile=$DataDir$/labelmap.txt
         ]
     ]
     

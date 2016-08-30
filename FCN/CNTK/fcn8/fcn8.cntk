@@ -42,7 +42,7 @@ Train=[
         minibatchSize=$minibatchSize$
         maxEpochs=$maxEpochs$
         learningRatesPerMB=0.01
-        numMBsToShowResult=4
+        numMBsToShowResult=1
         momentumPerSample=0
         dropoutRate=0.0
 
