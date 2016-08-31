@@ -1,6 +1,7 @@
 
 all: cntk torch tf
-CNTK=~/CNTK/bin/cntk
+#CNTK=~/CNTK/bin/cntk
+CNTK=~/cntk/cntk/bin/cntk
 
 #128 sequences * 32 = 4096
 #128 sequences * 64 = 8192 

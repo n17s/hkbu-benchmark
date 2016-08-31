@@ -11,7 +11,7 @@ precision="float"
 
 deviceId=0
 minibatchSize=16
-epochSize=512
+epochSize=2560
 maxEpochs=2
 
 command=Train
@@ -46,7 +46,7 @@ Train=[
         gradUpdateType="None"
         L2RegWeight=0.0001
         dropoutRate=0
-	numMBsToShowResult=1
+	    numMBsToShowResult=10
         
         ParallelTrain=[
             parallelizationMethod="DataParallelSGD"
