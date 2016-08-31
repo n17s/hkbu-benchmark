@@ -32,10 +32,11 @@ DNN=[
     # conv1
     kW1 = 11
     kH1 = 11
-    cMap1 = 64
+    cMap1 = 96
     hStride1 = 4
     vStride1 = 4
     # weight[cMap1, kW1 * kH1 * ImageC]
+    #conv1 = ConvReLULayerValid(features, cMap1, 363, kW1, kH1, hStride1, vStride1, conv1WScale, conv1BValue)
     conv1 = ConvReLULayer(features, cMap1, 363, kW1, kH1, hStride1, vStride1, conv1WScale, conv1BValue)
     
     # pool1
@@ -48,11 +49,11 @@ DNN=[
     # conv2
     kW2 = 5
     kH2 = 5
-    cMap2 = 192
+    cMap2 = 96
     hStride2 = 1
     vStride2 = 1
     # weight[cMap2, kW2 * kH2 * cMap1]
-    conv2 = ConvReLULayer(pool1, cMap2, 1600, kW2, kH2, hStride2, vStride2, conv2WScale, conv2BValue)
+    conv2 = ConvReLULayer(pool1, cMap2, 2400, kW2, kH2, hStride2, vStride2, conv2WScale, conv2BValue)
 
     # pool2
     pool2W = 3
@@ -64,20 +65,20 @@ DNN=[
     # conv3
     kW3 = 3
     kH3 = 3
-    cMap3 = 384
+    cMap3 = 256
     hStride3 = 1
     vStride3 = 1
     # weight[cMap3, kW3 * kH3 * cMap2]
-    conv3 = ConvReLULayer(pool2, cMap3, 1728, kW3, kH3, hStride3, vStride3, conv3WScale, conv3BValue)
+    conv3 = ConvReLULayer(pool2, cMap3, 864, kW3, kH3, hStride3, vStride3, conv3WScale, conv3BValue)
     
     # conv4
     kW4 = 3
     kH4 = 3
-    cMap4 = 256
+    cMap4 = 384
     hStride4 = 1
     vStride4 = 1
     # weight[cMap4, kW4 * kH4 * cMap3]
-    conv4 = ConvReLULayer(conv3, cMap4, 3456, kW4, kH4, hStride4, vStride4, conv4WScale, conv4BValue)
+    conv4 = ConvReLULayer(conv3, cMap4, 2304, kW4, kH4, hStride4, vStride4, conv4WScale, conv4BValue)
 
     # conv5
     kW5 = 3
@@ -86,7 +87,7 @@ DNN=[
     hStride5 = 1
     vStride5 = 1
     # weight[cMap5, kW5 * kH5 * cMap4]
-    conv5 = ConvReLULayer(conv4, cMap5, 2304, kW5, kH5, hStride5, vStride5, conv5WScale, conv5BValue)
+    conv5 = ConvReLULayer(conv4, cMap5, 3456, kW5, kH5, hStride5, vStride5, conv5WScale, conv5BValue)
     
     # pool3
     pool3W = 3
@@ -97,10 +98,8 @@ DNN=[
 
     hiddenDim = 4096
     h1 = DNNImageReLULayer(6, 6, 256, hiddenDim, pool3, fc1WScale, fc1BValue)
-    h1_d = Dropout(h1)
-    h2 = DNNReLULayer(hiddenDim, hiddenDim, h1_d, fc2WScale, fc2BValue)
-    h2_d = Dropout(h2)
-    ol = DNNLastLayer(hiddenDim, labelDim, h2_d, fc3WScale, fc3BValue)
+    h2 = DNNReLULayer(hiddenDim, hiddenDim, h1, fc2WScale, fc2BValue)
+    ol = DNNLastLayer(hiddenDim, labelDim, h2, fc3WScale, fc3BValue)
     
     CE = CrossEntropyWithSoftmax(labels, ol, tag = Criteria)
     Err = ClassificationError(labels, ol, tag = Eval)

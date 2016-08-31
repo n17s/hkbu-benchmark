@@ -60,8 +60,8 @@ train = [
 #            DenseLayer (labelDim)
 #        )
 
-        words = SparseInput (inputDim)
-        labels =Input (inputDim)
+        words  = if deviceId >= 0 then SparseInput (inputDim) else Input (inputDim)
+        labels = Input (inputDim)
 
         z = model(words)
 
