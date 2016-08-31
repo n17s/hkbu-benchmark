@@ -14,6 +14,9 @@ minibatchSize=16
 epochSize=2560
 maxEpochs=2
 
+shareNodeValueMatrices=true
+maxTempMemSizeInSamplesForCNN=1
+
 command=Train
 
 parallelTrain="false"
