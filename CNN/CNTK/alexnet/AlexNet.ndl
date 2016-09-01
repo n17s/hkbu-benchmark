@@ -2,8 +2,8 @@ load=ndlMacros
 run=DNN
 
 ndlMacros = [
-    ImageW = 224
-    ImageH = 224
+    ImageW = 227
+    ImageH = 227
     ImageC = 3
     LabelDim = 1000
 
@@ -36,8 +36,7 @@ DNN=[
     hStride1 = 4
     vStride1 = 4
     # weight[cMap1, kW1 * kH1 * ImageC]
-    #conv1 = ConvReLULayerValid(features, cMap1, 363, kW1, kH1, hStride1, vStride1, conv1WScale, conv1BValue)
-    conv1 = ConvReLULayer(features, cMap1, 363, kW1, kH1, hStride1, vStride1, conv1WScale, conv1BValue)
+    conv1 = ConvReLULayerValid(features, cMap1, 363, kW1, kH1, hStride1, vStride1, conv1WScale, conv1BValue)
     
     # pool1
     pool1W = 3

@@ -65,7 +65,7 @@ Train=[
         file=$DataDir$/imagenet_data.txt
         randomize=None
         features=[
-            dim=150528
+            dim=154587
             start=1
         ]
         labels=[

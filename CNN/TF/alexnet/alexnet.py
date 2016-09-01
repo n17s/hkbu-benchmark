@@ -169,11 +169,13 @@ def run_benchmark():
       image_shape = [FLAGS.batch_size, 3, image_size + 3, image_size + 3]
     else:
       image_shape = [FLAGS.batch_size, image_size + 3, image_size + 3, 3]
-    images = tf.Variable(tf.random_normal(image_shape,
+    with tf.device('/cpu:0'):
+        print 'hello from cpu'
+        images = tf.Variable(tf.random_normal(image_shape,
                                           dtype=tf.float32,
                                           stddev=1e-1))
 
-    labels = tf.Variable(tf.ones([FLAGS.batch_size],
+        labels = tf.Variable(tf.ones([FLAGS.batch_size],
                                  dtype=tf.int32))
 
     # Build a Graph that computes the logits predictions from the
@@ -224,11 +226,11 @@ if __name__ == '__main__':
   parser.add_argument("-i", "--iterations", help="iterations", type=int, default=2)
   parser.add_argument("-d", "--deviceid", help="specified device id", type=int, default=0)
   args = parser.parse_args()
-  
-  epochs = args.epochs 
-  minibatch = args.minibatch 
-  iterations = args.iterations 
-  device_id = args.deviceid 
+
+  epochs = args.epochs
+  minibatch = args.minibatch
+  iterations = args.iterations
+  device_id = args.deviceid
   set_parameters(epochs, minibatch, iterations, device_id)
 
   tf.app.run()

@@ -30,6 +30,9 @@ confVocabSize = 10000
 
 trainFile = "ptb.train.txt"
 
+#Uncomment the following if you get an out of memory error
+#shareNodeValueMatrices = true
+
 #######################################
 #  TRAINING CONFIG                    #
 #######################################

@@ -1,6 +1,6 @@
 import skimage.io  # bug. need to import this before tensorflow
 import skimage.transform  # bug. need to import this before tensorflow
-from resnet_train  import train, set_parameters, get_device_str 
+from resnet_train  import train, set_parameters, get_device_str
 from resnet_model import *
 import tensorflow as tf
 import time
@@ -98,10 +98,10 @@ def main(_):
     with tf.Graph().as_default(), tf.device(get_device_str()):
         image_size = 224
         image_shape = [FLAGS.batch_size, image_size + 3, image_size + 3, 3]
-
-        labels = tf.Variable(tf.ones([FLAGS.batch_size],
+        with tf.device('/cpu:0'):
+            labels = tf.Variable(tf.ones([FLAGS.batch_size],
                                      dtype=tf.int32))
-        images = tf.Variable(tf.random_normal(image_shape,
+            images = tf.Variable(tf.random_normal(image_shape,
                                               dtype=tf.float32,
                                               stddev=1e-1))
         #images, labels = distorted_inputs()
@@ -122,10 +122,10 @@ if __name__ == '__main__':
     parser.add_argument("-d", "--deviceid", help="specified device id", type=int, default=0)
     args = parser.parse_args()
 
-    epochs = args.epochs 
-    minibatch = args.minibatch 
-    iterations = args.iterations 
-    device_id = args.deviceid 
+    epochs = args.epochs
+    minibatch = args.minibatch
+    iterations = args.iterations
+    device_id = args.deviceid
     set_parameters(epochs, minibatch, iterations, device_id)
     tf.app.run()
 
