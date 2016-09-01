@@ -170,7 +170,6 @@ def run_benchmark():
     else:
       image_shape = [FLAGS.batch_size, image_size + 3, image_size + 3, 3]
     with tf.device('/cpu:0'):
-        print 'hello from cpu'
         images = tf.Variable(tf.random_normal(image_shape,
                                           dtype=tf.float32,
                                           stddev=1e-1))
