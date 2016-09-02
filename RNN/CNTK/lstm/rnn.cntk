@@ -85,10 +85,10 @@ train = [
         readerType = "CNTKTextFormatReader"
         file = "$DataDir$/$trainFile$"
         # fast but a memory hog
-        # randomize = false
+        randomize = false
         # slower but memory friendly
-        randomize = true 
-        randomizationWindow = 30000
+        #randomize = true 
+        #randomizationWindow = 30000
         traceLevel = 0
         input = [
             words  = [ alias = "S0"; dim = $confVocabSize$; format = "sparse" ]
